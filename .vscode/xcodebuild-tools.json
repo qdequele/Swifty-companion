@@ -1,0 +1,16 @@
+{
+    "sdk": "iphonesimulator11.1",
+    "workspace": "${workspaceRoot}/Swift-companion.xcworkspace",
+    "scheme": "Swift-companion",
+    "debugConfigurations": [
+        {
+            "name": "Simulator",
+            "cwd": "${buildPath}",
+            "program": "ios-sim",
+            "args": [
+                "launch", "Swift-companion.app/",
+                "--devicetypeid",  "com.apple.CoreSimulator.SimDeviceType.iPhone-X, 11.1"
+            ]
+        }
+    ]
+}
