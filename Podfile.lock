@@ -4,20 +4,28 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
   - ObjectMapper (3.1.0)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
   - SnapKit (4.0.0)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - AlamofireObjectMapper (~> 5.0)
   - ObjectMapper (~> 3.1)
+  - SDWebImage (~> 4.0)
   - SnapKit (~> 4.0.0)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 68dc095e7e66aa9a164f0684ad1a315431d74c3d
+PODFILE CHECKSUM: 953656f6b290b2f0d2c79481f0a65a2b9579798f
 
 COCOAPODS: 1.3.1

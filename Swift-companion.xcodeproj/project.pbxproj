@@ -15,6 +15,14 @@
 		C3206F292015F1A200F58A1D /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3206F282015F1A200F58A1D /* api.swift */; };
 		C3BAFA0A201618450024E451 /* UserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAFA09201618450024E451 /* UserIdentifier.swift */; };
 		C3BAFA0F201618820024E451 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAFA0E201618820024E451 /* UserCell.swift */; };
+		D199CA29201725F1000FB5DE /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA28201725F1000FB5DE /* LocalStore.swift */; };
+		D199CA2B20173A16000FB5DE /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA2A20173A16000FB5DE /* UserViewController.swift */; };
+		D199CA2D20173A6A000FB5DE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA2C20173A6A000FB5DE /* UserModel.swift */; };
+		D199CA2F20173C9D000FB5DE /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA2E20173C9D000FB5DE /* ProjectModel.swift */; };
+		D199CA3120173E8A000FB5DE /* CursusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA3020173E8A000FB5DE /* CursusModel.swift */; };
+		D199CA3320175DAC000FB5DE /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA3220175DAC000FB5DE /* UserHeaderView.swift */; };
+		D199CA35201781E3000FB5DE /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA34201781E3000FB5DE /* ProjectCell.swift */; };
+		D199CA372017967D000FB5DE /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199CA362017967D000FB5DE /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +37,14 @@
 		C3206F282015F1A200F58A1D /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 		C3BAFA09201618450024E451 /* UserIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserIdentifier.swift; path = "Swift-companion/Models/UserIdentifier.swift"; sourceTree = SOURCE_ROOT; };
 		C3BAFA0E201618820024E451 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = "Swift-companion/UI/UserCell.swift"; sourceTree = SOURCE_ROOT; };
+		D199CA28201725F1000FB5DE /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		D199CA2A20173A16000FB5DE /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		D199CA2C20173A6A000FB5DE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D199CA2E20173C9D000FB5DE /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		D199CA3020173E8A000FB5DE /* CursusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursusModel.swift; sourceTree = "<group>"; };
+		D199CA3220175DAC000FB5DE /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
+		D199CA34201781E3000FB5DE /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		D199CA362017967D000FB5DE /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F074098E32ACAC9B2B903FDF /* Pods_Swift_companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,6 +106,8 @@
 				C31F7D8C2015DAA900BD926A /* Assets.xcassets */,
 				C31F7D8E2015DAA900BD926A /* LaunchScreen.storyboard */,
 				C31F7D912015DAA900BD926A /* Info.plist */,
+				D199CA28201725F1000FB5DE /* LocalStore.swift */,
+				D199CA362017967D000FB5DE /* UIColorExtension.swift */,
 			);
 			path = "Swift-companion";
 			sourceTree = "<group>";
@@ -98,15 +116,19 @@
 			isa = PBXGroup;
 			children = (
 				C3BAFA09201618450024E451 /* UserIdentifier.swift */,
+				D199CA2C20173A6A000FB5DE /* UserModel.swift */,
+				D199CA2E20173C9D000FB5DE /* ProjectModel.swift */,
+				D199CA3020173E8A000FB5DE /* CursusModel.swift */,
 			);
-			name = Models;
-			path = "New Group";
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C3BAFA0B201618500024E451 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				C3BAFA0E201618820024E451 /* UserCell.swift */,
+				D199CA3220175DAC000FB5DE /* UserHeaderView.swift */,
+				D199CA34201781E3000FB5DE /* ProjectCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -123,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				C31F7D872015DAA900BD926A /* SearchViewController.swift */,
+				D199CA2A20173A16000FB5DE /* UserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,14 +230,18 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -261,11 +288,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D199CA2B20173A16000FB5DE /* UserViewController.swift in Sources */,
 				C31F7D882015DAA900BD926A /* SearchViewController.swift in Sources */,
+				D199CA2F20173C9D000FB5DE /* ProjectModel.swift in Sources */,
+				D199CA2D20173A6A000FB5DE /* UserModel.swift in Sources */,
+				D199CA3120173E8A000FB5DE /* CursusModel.swift in Sources */,
 				C3BAFA0A201618450024E451 /* UserIdentifier.swift in Sources */,
 				C31F7D862015DAA900BD926A /* AppDelegate.swift in Sources */,
+				D199CA35201781E3000FB5DE /* ProjectCell.swift in Sources */,
+				D199CA3320175DAC000FB5DE /* UserHeaderView.swift in Sources */,
 				C3BAFA0F201618820024E451 /* UserCell.swift in Sources */,
+				D199CA372017967D000FB5DE /* UIColorExtension.swift in Sources */,
 				C3206F292015F1A200F58A1D /* api.swift in Sources */,
+				D199CA29201725F1000FB5DE /* LocalStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

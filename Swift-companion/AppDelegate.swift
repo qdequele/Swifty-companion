@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mainController = SearchViewController() as UIViewController
         let navigationController = UINavigationController(rootViewController: mainController)
-//        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.isTranslucent = false
         self.window?.rootViewController = navigationController
         self.window!.backgroundColor = .white
         self.window?.makeKeyAndVisible()

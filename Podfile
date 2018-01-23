@@ -11,5 +11,6 @@ target 'Swift-companion' do
   pod 'ObjectMapper', '~> 3.1'
   pod 'AlamofireObjectMapper', '~> 5.0'
   pod 'SnapKit', '~> 4.0.0'
-
+  pod 'SwiftyJSON'
+  pod 'SDWebImage', '~> 4.0'
 end

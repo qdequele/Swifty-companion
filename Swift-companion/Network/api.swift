@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
+import SwiftyJSON
+
 
 class api {
 
@@ -17,76 +19,36 @@ class api {
     let secret : String = "e1d6c338212d4985ba104e1f3e3847c21bc5d1cca1698ae3abcf7e9ad0a78597"
 
     func getUserToken() {
-        let fullUrl = NSURL(string: url + "/oauth/token")
-        let request = NSMutableURLRequest(url: fullUrl! as URL)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "grant_type=client_credentials&client_id=\(UID)&client_secret=\(secret)".data(using: String.Encoding.utf8)
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in
-            if let err = error {
-                print (err)
-            } else if let d = data {
-                do {
-                    if let dic : NSDictionary = try JSONSerialization.jsonObject(with: d, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                        if let t = dic["access_token"] as? String {
-                            let defaults:UserDefaults = UserDefaults.standard
-                            defaults.set(t, forKey: "token_value")
-                            print(t)
-                            DispatchQueue.main.async {
-                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                            }
-                        }
-                    }
-                } catch (let err) {
-                    print (err)
-                }
+
+        let fullUrl = url + "/oauth/token"
+
+        let parameters: Parameters = [
+            "grant_type": "client_credentials",
+            "client_id": UID,
+            "client_secret": secret
+        ]
+
+        Alamofire.request(fullUrl, method: .post, parameters: parameters)
+            .validate()
+            .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                LocalStore.accessToken.set(json["access_token"].stringValue)
+            case .failure(let error):
+                print(error)
             }
         }
-        task.resume()
-    }
 
-    func getUser(withLogin login: String?, _ callback: @escaping ([UserIdentifier])->()) {
-        let parameters: Parameters = ["filter[login]": "\(String(describing: login))"]
-        
-        let fullUrl = url + "/v2/users"
-        
-        let defaults:UserDefaults = UserDefaults.standard
-        
-        let token = defaults.object(forKey: "token_value") as? String ?? " "
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Basic \(token)",
-            "Accept": "application/json"
-        ]
-        
-        Alamofire.request(fullUrl, parameters: parameters, headers: headers)
-            .responseArray { (response: DataResponse<[UserIdentifier]>) in
-                
-                let responses = response.result.value
-                
-                if let responses = responses {
-                    for forecast in responses {
-                        print(forecast.id!)
-                        print(forecast.login!)
-                    }
-                    callback(responses)
-                }
-        }
     }
 
     func getUsersRange(startWith login: String = " ", _ callback: @escaping ([UserIdentifier])->()) {
         let parameters: Parameters = ["range[login]": "\(login),\(login + "z")"]
-
         let fullUrl = url + "/v2/users"
-
-        let defaults:UserDefaults = UserDefaults.standard
-
-        let token = defaults.object(forKey: "token_value") as? String ?? " "
-
-        print("token : \(token)")
+        guard let access_token = LocalStore.accessToken.get() else {return}
         let headers: HTTPHeaders = [
-            "Authorization": "Basic \(token)"
+            "Authorization": "Bearer \(access_token)"
         ]
 
         Alamofire.request(fullUrl, parameters: parameters, headers: headers)
@@ -95,12 +57,24 @@ class api {
                 let responses = response.result.value
                 print(response.error.debugDescription)
                 if let responses = responses {
-                    for response in responses {
-                        print(response.id!)
-                        print(response.login!)
-                    }
                     callback(responses)
                 }
             }
+    }
+
+    func getUser(withId id: Int, _ callback: @escaping (UserModel)->()) {
+        let fullUrl = url + "/v2/users/" + String(id)
+        guard let access_token = LocalStore.accessToken.get() else {return}
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(access_token)"
+        ]
+        print(fullUrl)
+        Alamofire.request(fullUrl, headers: headers)
+            .responseObject { (response: DataResponse<UserModel>) in
+                let response = response.result.value
+                if let response = response {
+                    callback(response)
+                }
+        }
     }
 }
