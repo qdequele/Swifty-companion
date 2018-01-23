@@ -33,7 +33,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.register(UserCell.self, forCellReuseIdentifier: "userCell")
         self.view.addSubview(self.tableView)
         self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height);
-        users = api().getUserRange();
+        api().getUsersRange({ (_users) in
+            self.users = _users
+        });
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +46,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController.searchBar.text!)
-        users = api().getUserRange(searchController.searchBar.text);
+        
+        api().getUsersRange(startWith: searchController.searchBar.text!) { (_users) in
+            self.users = _users
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

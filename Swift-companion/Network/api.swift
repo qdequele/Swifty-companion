@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireObjectMapper
 
 class api {
 
@@ -45,11 +46,36 @@ class api {
         task.resume()
     }
 
-    func getUser(withLogin login: String?) -> [UserIdentifier] {
-
+    func getUser(withLogin login: String?, _ callback: @escaping ([UserIdentifier])->()) {
+        let parameters: Parameters = ["filter[login]": "\(String(describing: login))"]
+        
+        let fullUrl = url + "/v2/users"
+        
+        let defaults:UserDefaults = UserDefaults.standard
+        
+        let token = defaults.object(forKey: "token_value") as? String ?? " "
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(token)",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request(fullUrl, parameters: parameters, headers: headers)
+            .responseArray { (response: DataResponse<[UserIdentifier]>) in
+                
+                let responses = response.result.value
+                
+                if let responses = responses {
+                    for forecast in responses {
+                        print(forecast.id!)
+                        print(forecast.login!)
+                    }
+                    callback(responses)
+                }
+        }
     }
 
-    func getUsersRange(startWith login: String = " ") -> [UserIdentifier] {
+    func getUsersRange(startWith login: String = " ", _ callback: @escaping ([UserIdentifier])->()) {
         let parameters: Parameters = ["range[login]": "\(login),\(login + "z")"]
 
         let fullUrl = url + "/v2/users"
@@ -58,21 +84,22 @@ class api {
 
         let token = defaults.object(forKey: "token_value") as? String ?? " "
 
+        print("token : \(token)")
         let headers: HTTPHeaders = [
-            "Authorization": "Basic \(token)",
-            "Accept": "application/json"
+            "Authorization": "Basic \(token)"
         ]
 
-        Alamofire.request(fullUrl, headers: headers, parameters: parameters)
+        Alamofire.request(fullUrl, parameters: parameters, headers: headers)
             .responseArray { (response: DataResponse<[UserIdentifier]>) in
 
-                let forecastArray = response.result.value
-
-                if let forecastArray = forecastArray {
-                    for forecast in forecastArray {
-                        print(forecast.id)
-                        print(forecast.login)
+                let responses = response.result.value
+                print(response.error.debugDescription)
+                if let responses = responses {
+                    for response in responses {
+                        print(response.id!)
+                        print(response.login!)
                     }
+                    callback(responses)
                 }
             }
     }

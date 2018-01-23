@@ -12,7 +12,7 @@ import ObjectMapper
 class UserIdentifier: Mappable {
     var id:     Int?
     var login:  String?
-    var url:   String?
+    var url:    String?
 
     required init?(map: Map) {
 
